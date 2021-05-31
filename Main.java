@@ -35,9 +35,7 @@ public class Main{
         org.addInList(BabySitting);
         
          //Ektypwsh listwn gia elenxo leitourgias 
-        //org.listEntities(1);
-        //org.listEntities(0);
-
+        org.listEntities();
         
         org.setAdmin(adm);
         

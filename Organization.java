@@ -200,11 +200,18 @@ public class Organization {
     //     }
     // }
 
+    public int returnMaterialListSize(){
+        return materialList.size();
+    }
 
-    public void listEntities(int choice) {
+    public int returnServiceListSize(){
+        return this.materialList.size();
+    }
+
+    public void listEntities() {
+       
         List<Material> materialList=new ArrayList<>(); 
         List<Service> serviceList=new ArrayList<>();
-    
 
         for(Entity entity: this.entityList){
             if(entity instanceof Material) materialList.add((Material)entity);
@@ -212,27 +219,33 @@ public class Organization {
         }
         this.materialList=materialList;
         this.serviceList=serviceList;
+
+        
+
+    }
+
+    public void showListEntities(int choice){
+       
+
         System.out.println("This list contains:");
-        if((!materialList.isEmpty()) && choice==1) System.out.println("Material Objects!");
-        if((!serviceList.isEmpty()) && choice!=1) System.out.println("Service Objects!");
+        if((!this.materialList.isEmpty()) && choice==1) System.out.println("Material Objects!");
+        if((!this.serviceList.isEmpty()) && choice!=1) System.out.println("Service Objects!");
         
         if (choice==1){
             System.out.println("Materials: ("+ materialList.size()+")\n");
-                for(Material material: materialList)
+                for(Material material: this.materialList)
                     System.out.println(material.getEntityInfo() + " Quantity: " + material.getQuantity());
         }
         else{
             System.out.println("Services: ("+ serviceList.size()+")\n");
-                for(Service service: serviceList){
+                for(Service service: this.serviceList){
                     System.out.println(service.getEntityInfo() + " Quantity: " + service.getQuantity());
                 }
         }
-
     }
 
     public List<RequestDonationList> getCurrentDonations(){
         return this.currentDonations;
     }
-
 
 }

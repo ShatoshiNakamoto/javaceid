@@ -195,7 +195,7 @@ public class App {
         choice = scan.nextInt();
         
         if(choice==1) {
-            org.listEntities(1);
+            org.showListEntities(1);
             System.out.println("Θέλετε να προφέρετε;\n1. Ναι\n2. Όχι\n");
             choice = scan.nextInt();
             if (choice==1) {
@@ -245,7 +245,7 @@ public class App {
         
                 
         else if(choice==2) {
-            org.listEntities(0);
+            org.showListEntities(0);
             System.out.println("Θέλετε να προφέρετε;\n1. Ναι\n2. Όχι\n");
             choice = scan.nextInt();
             switch(choice){
@@ -363,7 +363,7 @@ public class App {
         System.out.println("1. Material\n" + "2. Services\n");
         choice = scan.nextInt();
         if(choice==1){
-            org.listEntities(1);
+            org.showListEntities(1);
             System.out.println("Επιλέξτε αντικείμενο:");
             System.out.println("1.Milk 2.Sugar 3.Rice");
             choice1 = scan.nextInt();
@@ -388,7 +388,7 @@ public class App {
             }
         }
         else if(choice==2){
-            org.listEntities(0);
+            org.showListEntities(0);
             System.out.println("Θέλετε να ζητήσετε;\n1. Ναι\n2. Όχι\n");
             choice1 = scan.nextInt();
             if(choice1==1){
@@ -488,13 +488,13 @@ public class App {
     }
 
     public void view(/*user*/){
-        System.out.println("Επιλέξτε ποια κατηγορία θέλετε να δείτε:");
-        System.out.println("1. Material\n" + "2. Services\n");
+        System.out.println("Επιλέξτε ποια κατηγορία θέλετε να δείτε:\n");
+        System.out.println("1. Material " +org.returnMaterialListSize()+ "\n2. Services "+org.returnServiceListSize());
         Scanner scan = new Scanner(System.in);
         int choice,choice1;
         choice = scan.nextInt();
         if(choice==1){
-            org.listEntities(1);
+            org.showListEntities(1);
             System.out.println("Θέλετε να επιστρέψετε στο μενού;");
             System.out.println("1.Ναι 2.Οχι");
             choice1=scan.nextInt();
@@ -506,7 +506,7 @@ public class App {
             }
         }
         else if(choice==2){
-            org.listEntities(0);
+            org.showListEntities(0);
             System.out.println("Θέλετε να επιστρέψετε στο μενού;");
             System.out.println("1.Ναι 2.Οχι");
             choice1=scan.nextInt();
