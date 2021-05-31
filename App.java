@@ -6,13 +6,19 @@ public class App {
     private Admin admin;
     private Donator donator;
     private Beneficiary beneficiary;
-    private Organization org = new Organization("KRONOS");
+    private Organization org;
     private int phonenumber;
     private String name;
     ArrayList<String> phoneNumbers=new ArrayList<>();
     private int itteration=0;
+    private Offers offer;
+    public static Material mat;
+    Main main=new Main();
+    private RequestDonation rd;
 
-    public App() {}
+    public App(Organization org) {
+        this.org=org;
+    }
 
     public void entermenu(){
         
@@ -21,12 +27,8 @@ public class App {
             this.itteration=this.itteration+1;
         }
 
-
         this.org.getDonatorList();//Enai sth lista kai prosthetontai kai alla stoixeia olla pena
         this.org.getBeneficiaryList();//Enai sth lista kai prosthetontai kai alla stoixeia
-        
-        
-        
         this.phonenumber=checkuser();
 
         int isuser=checkuserlist(this.phonenumber);
@@ -158,15 +160,14 @@ public class App {
         choice = scan.nextInt();
         switch(choice){
             case 1:
-                addoffer(don);
-                donatorMenu(don);
+                addoffer(/*user*/);
                 break;
             case 2:
                 showoffers(/*user*/);
                 donatorMenu(don);
                 break;
             case 3: 
-                //don.commit(rd);
+                //commit(user);//donator commit
                 donatorMenu(don);
                 break;
             case 4:
@@ -177,6 +178,7 @@ public class App {
                 entermenu();//logout();
                 break;
             case 6:
+                System.out.println("Byeeeeeee");    
                 System.exit(0);
                 break;
             default:
@@ -185,27 +187,105 @@ public class App {
         }
     }
 
-    public void addoffer(Donator don){
+    public void addoffer(/*user*/){
         Scanner scan = new Scanner(System.in);
-        int choice;
-        System.out.println("1. Material\n" + "2. Services\n");//theloume ektypwsh kai plhthous antikeimenwn
+        int choice,choice1;
+        double quan;
+        System.out.println("1. Material\n" + "2. Services\n");
         choice = scan.nextInt();
-        don.getOrg().listEntities(choice);//ektypwnei
-        System.out.println("Εισάγετε ποσότητα/ώρες:\n");
-        choice = scan.nextInt();
-        //entity.getorg.getEntityInfo(choice);//ektypwnei? oxi, tha eprepe
-        System.out.println("Θέλετε να προφέρετε "+choice+ ";\n1. Ναι\n2. Όχι\n");
-        choice = scan.nextInt();
-        if (choice==1) {
-            //eisodos posothtas/wrwn apo xrhsth 
-            //add Material/service call add()
-
+        
+        if(choice==1) {
+            org.listEntities(1);
+            System.out.println("Θέλετε να προφέρετε;\n1. Ναι\n2. Όχι\n");
+            choice = scan.nextInt();
+            if (choice==1) {
+                System.out.println("Επιλέξτε το αντικείμενο που θέλετε να προσφέρετε:");
+                System.out.println("1.Milk 2.Sugar 3.Rice");
+                choice1=scan.nextInt();
+                if(choice1==1){
+                    System.out.println("Εισάγετε την ποσότητα που θέλετε να προσφέρετε:");
+                    quan = scan.nextDouble();
+                    this.org.addQuantityMaterial(quan, choice1-1);
+                    //getMaterialList().get(choice1);
+                }
+                else if(choice1==2){
+                    System.out.println("Εισάγετε την ποσότητα που θέλετε να προσφέρετε:");
+                    quan = scan.nextDouble();
+                    this.org.addQuantityMaterial(quan, choice1-1);
+                    //sugar.setQuantity(quan);
+                }
+                else if(choice1==3){
+                    System.out.println("Εισάγετε την ποσότητα που θέλετε να προσφέρετε:");
+                    quan = scan.nextDouble();
+                    this.org.addQuantityMaterial(quan, choice1-1);
+                    //milk.setQuantity(quan);
+                }
+                else {
+                    System.out.println("Επιστροφή στο μενού!"); 
+                    this.donatorMenu(this.donator);
+                }
+            
+                
+                
+                //System.out.println("Εισάγετε την ποσότητα που θέλετε να προσφέρετε:");
+                //quan = scan.nextDouble();
+                //mat.setQuantity(quan);
+                //System.out.println("Οι νέες ποσότητες μετά την προσφορά σας:");
+                //org.listEntities(1);
+            }
+            if(choice==2){
+                System.out.println("Επιστροφή στο μενού!");
+                this.donatorMenu(this.donator);
+            }
+             else {
+            System.out.println("Επιστροφή στο μενού!"); 
+            this.donatorMenu(this.donator);
         }
-        else{
-            System.out.println("Ακυρώσατε την προσφορά.");
-        }
-        //donatorMenu();
     }
+        
+                
+        else if(choice==2) {
+            org.listEntities(0);
+            System.out.println("Θέλετε να προφέρετε;\n1. Ναι\n2. Όχι\n");
+            choice = scan.nextInt();
+            switch(choice){
+                case 1:
+                    System.out.println("Επιλέξτε την υπηρεσία που θέλετε να προσφέρετε:");
+                    System.out.println("1.Medical Support 2.Nursery Support 3.Baby Sitting");
+                    choice1=scan.nextInt();
+                    if(choice1==1){
+                        System.out.println("Εισάγετε τις ώρες που θέλετε να προσφέρετε:");
+                        quan = scan.nextDouble();
+                        this.org.addQuantityService(quan, choice1-1);                
+                    }
+                    else if(choice1==2){
+                        System.out.println("Εισάγετε τις ώρες που θέλετε να προσφέρετε:");
+                        quan = scan.nextDouble();
+                        this.org.addQuantityService(quan, choice1-1);                
+                    }
+                    else if(choice1==3){
+                        System.out.println("Εισάγετε τις ώρες που θέλετε να προσφέρετε:");
+                        quan = scan.nextDouble();
+                        this.org.addQuantityService(quan, choice1-1);                
+                    }
+                    else {
+                        System.out.println("Επιστροφή στο μενού!"); 
+                        this.donatorMenu(this.donator);
+                    }
+                    this.donatorMenu(this.donator);
+                break;
+                case 2:
+                    this.donatorMenu(this.donator);
+                break;
+            
+            }
+        }
+    }
+
+    //  public Material getMaterialList(int index){
+    //     Material material = 
+    //     return material;
+    //  }
 
     public void showoffers(){
         
@@ -247,7 +327,7 @@ public class App {
         switch(choice){
             case 1:
                 addRequest(/*user*/);
-                beneficiaryMenu(ben);
+                //beneficiaryMenu(ben);
                 break;
             case 2:
                 showRequests(/*user*/);
@@ -266,7 +346,7 @@ public class App {
                 entermenu();
                 break;
             case 6:
-            System.out.println("Goodnight...\n");
+                System.out.println("Goodnight...\n");
                 System.exit(0);
                 break;
             default:
@@ -277,23 +357,71 @@ public class App {
 
     public void addRequest(/*user*/){
         Scanner scan = new Scanner(System.in);
-        int choice;
-        System.out.println("1. Material\n" + "2. Services\n");//theloume ektypwsh kai plhthous antikeimenwn
+        int choice,choice1;
+        double quan;
+        System.out.println("Επιλέξτε τι θέλετε να ζητήσετε:");
+        System.out.println("1. Material\n" + "2. Services\n");
         choice = scan.nextInt();
+        if(choice==1){
+            org.listEntities(1);
+            System.out.println("Επιλέξτε αντικείμενο:");
+            System.out.println("1.Milk 2.Sugar 3.Rice");
+            choice1 = scan.nextInt();
+            if(choice1==1){
+                System.out.println("Επιλέξτε την ποσότητα που θα θέλατε:");
+                quan=scan.nextDouble();
+                //rd.RequestDonation(milk,quan);
+            }
+            else if(choice1==2){
+                System.out.println("Επιλέξτε την ποσότητα που θα θέλατε:");
+                quan=scan.nextDouble();
+                //rd.RequestDonation(sugar,quan);
+            }
+            else if(choice1==3){
+                System.out.println("Επιλέξτε την ποσότητα που θα θέλατε:");
+                quan=scan.nextDouble();
+                //rd.RequestDonation(rice,quan);
+            }
+            else{
+                System.out.println("Επιστροφή στο μενού!");
+                this.beneficiaryMenu(this.beneficiary);
+            }
+        }
+        else if(choice==2){
+            org.listEntities(0);
+            System.out.println("Θέλετε να ζητήσετε;\n1. Ναι\n2. Όχι\n");
+            choice1 = scan.nextInt();
+            if(choice1==1){
+                System.out.println("Επιλέξτε την υπηρεσία που θα θέλατε:");
+                System.out.println("1.Medical Support 2.Nursery Support 3.Baby Sitting");
+                choice1 = scan.nextInt();
+                if(choice1==1){
+                    System.out.println("Επιλέξτε τις ώρες που θα θέλατε:");
+                    quan=scan.nextDouble();
+                    //rd.RequestDonation(Medical Support,quan);
+                }
+                else if(choice1==2){
+                    System.out.println("Επιλέξτε τις ώρες που θα θέλατε:");
+                    quan=scan.nextDouble();
+                    //rd.RequestDonation(Nursery Support,quan);
+            }
+                else if(choice1==3){
+                    System.out.println("Επιλέξτε τις ώρες που θα θέλατε:");
+                    quan=scan.nextDouble();
+                    //rd.RequestDonation(Baby Sitting,quan);
+            }
+                
+        }
+            else {
+                System.out.println("Επιστροφή στο μενού!");
+                this.beneficiaryMenu(this.beneficiary);
+            }
+        }
         //user.getorg().listEntities(choice);//ektypwnei
-        choice = scan.nextInt();
+        //choice = scan.nextInt();
         //user.getorg().getEntityInfo(choice);//ektypwnei? oxi, tha eprepe
-        System.out.println("Θέλετε να ζητήσετε;\n1. Ναι\n2. Όχι\n");
-        choice = scan.nextInt();
-        if (choice==1) {
-            //eisodos posothtas/wrwn apo xrhsth 
-            //add  request for Material/service call add()
-
-        }
-        else{
-            System.out.println("Ακυρώσατε την ζήτηση.");
-        }
-        //beneficiaryMenu();
+        
+        
     }
 
     public void showRequests(){
@@ -326,14 +454,14 @@ public class App {
 
     public void adminMenu(Admin adm) {
 
-        //System.out.println("Καλησπέρα σας, καλώς ήλθατε " + user.getname() + "\nAdmin\n"); //dhmiourgia methodou getname/number //enarksh menu admin
+        System.out.println("Καλησπέρα σας, είστε ο διαχειρηστής του συστήματος, καλώς ήλθατε!");
         System.out.println("1. View\n"+"2. Monitor organization\n"+"3. Back\n"+"4. Logout\n"+"5. Exit\n");
         Scanner scan = new Scanner(System.in);
         int choice;
         choice = scan.nextInt();
         switch(choice){
             case 1:
-                //view();
+                view();
                 //adminMenu();
                 break;
             case 2:
@@ -360,15 +488,42 @@ public class App {
     }
 
     public void view(/*user*/){
+        System.out.println("Επιλέξτε ποια κατηγορία θέλετε να δείτε:");
+        System.out.println("1. Material\n" + "2. Services\n");
         Scanner scan = new Scanner(System.in);
-        int choice;
-        System.out.println("1. Material\n" + "2. Services\n");//theloume ektypwsh kai plhthous antikeimenwn
+        int choice,choice1;
         choice = scan.nextInt();
-        //donator.getorg().listEntities(choice);//ektypwnei
-        choice = scan.nextInt();
-        //entity.getorg.getEntityInfo(choice);//ektypwnei? oxi, tha eprepe
-    
-        //donatorMenu();
+        if(choice==1){
+            org.listEntities(1);
+            System.out.println("Θέλετε να επιστρέψετε στο μενού;");
+            System.out.println("1.Ναι 2.Οχι");
+            choice1=scan.nextInt();
+            if(choice1==1){
+                this.adminMenu(this.admin);
+            }
+            else if(choice1==2){
+                System.out.println("Byeeeeeee");
+            }
+        }
+        else if(choice==2){
+            org.listEntities(0);
+            System.out.println("Θέλετε να επιστρέψετε στο μενού;");
+            System.out.println("1.Ναι 2.Οχι");
+            choice1=scan.nextInt();
+            if(choice1==1){
+                this.adminMenu(this.admin);
+            }
+            else if(choice1==2){
+                System.out.println("Byeeeeeee");
+            }
+        }
+        else{
+            System.out.println("Επιστροφή στο μενού!");
+            this.adminMenu(this.admin);
+        }
+        
+        
+       
     }
 
     public void monitororganization() {

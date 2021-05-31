@@ -6,12 +6,19 @@ public class Organization {
     private List<Entity> entityList;
     private ArrayList<Donator> donatorList;
     private List<Beneficiary> beneficiaryList;
-    private List<RequestDonation> currentDonations;
-    
+    private List<RequestDonationList> currentDonations;
+    private Material mat;
+    private Service ser;
+    private Entity ent;
+    private List<Material> materialList=new ArrayList<>(); 
+    private List<Service> serviceList=new ArrayList<>();
+
+
+
     public Organization(String name) {
         this.name=name;
-        this.entityList=new ArrayList<>();
-        this.currentDonations=new ArrayList<>();
+        entityList=new ArrayList<>();
+        currentDonations=new ArrayList<>();
         this.donatorList= new ArrayList<>();
         this.beneficiaryList= new ArrayList<>();
     }
@@ -125,6 +132,15 @@ public class Organization {
         return this.admin;
     }
 
+    public void addQuantityMaterial(double quan, int choice1){
+        materialList.get(choice1).addQuantity(quan);
+    }
+
+    public void addQuantityService(double quan, int choice1){
+        serviceList.get(choice1).addQuantity(quan);
+
+    }
+
     public void addInList(Entity a){
         this.entityList.add(a);//error???
     }
@@ -183,7 +199,7 @@ public class Organization {
     //         System.out.println(service.getEntityInfo());
     //     }
     // }
-    
+
 
     public void listEntities(int choice) {
         List<Material> materialList=new ArrayList<>(); 
@@ -194,7 +210,8 @@ public class Organization {
             if(entity instanceof Material) materialList.add((Material)entity);
             else serviceList.add((Service)entity);
         }
-        
+        this.materialList=materialList;
+        this.serviceList=serviceList;
         System.out.println("This list contains:");
         if((!materialList.isEmpty()) && choice==1) System.out.println("Material Objects!");
         if((!serviceList.isEmpty()) && choice!=1) System.out.println("Service Objects!");
@@ -202,26 +219,20 @@ public class Organization {
         if (choice==1){
             System.out.println("Materials: ("+ materialList.size()+")\n");
                 for(Material material: materialList)
-                    System.out.println(material.getEntityInfo());
+                    System.out.println(material.getEntityInfo() + " Quantity: " + material.getQuantity());
         }
         else{
             System.out.println("Services: ("+ serviceList.size()+")\n");
                 for(Service service: serviceList){
-                    System.out.println(service.getEntityInfo());
+                    System.out.println(service.getEntityInfo() + " Quantity: " + service.getQuantity());
                 }
         }
 
     }
 
-    public void addToCurrentDonations(RequestDonation rd){
-        this.currentDonations.add(rd);
+    public List<RequestDonationList> getCurrentDonations(){
+        return this.currentDonations;
     }
 
-    public List<RequestDonation> getCurretnDonations(){
-    return this.currentDonations;
-    }
 
-    public void printRequestDonationsList(){
-        System.out.println(this.currentDonations);
-    }
 }

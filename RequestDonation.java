@@ -2,7 +2,7 @@ import java.util.Comparator;
 
 public class RequestDonation { //implements Comparator {
     private Entity entity;
-    private double quantity=100.0;
+    private double quantity;;
     
     public RequestDonation() {}
     

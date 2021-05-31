@@ -5,7 +5,7 @@ public class Main{
     public static ArrayList<Integer> AdminPhone=new ArrayList();
     public static ArrayList<Integer> DonatorPhone=new ArrayList();
     public static ArrayList<Integer> BeneficiaryPhone=new ArrayList();
-
+    
 
 
     
@@ -35,14 +35,14 @@ public class Main{
         org.addInList(BabySitting);
         
          //Ektypwsh listwn gia elenxo leitourgias 
-        org.listEntities(1);
-        org.listEntities(0);
+        //org.listEntities(1);
+        //org.listEntities(0);
 
         
         org.setAdmin(adm);
         
         
-        App app2=new App();
+        App app2=new App(org);
         app2.entermenu();
         
         

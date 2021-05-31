@@ -11,6 +11,7 @@ public class Donator extends User {
         //Main.DonatorPhone.add(phone);
     }
     
+  
     public Organization getOrg(){
         return this.org;
     }

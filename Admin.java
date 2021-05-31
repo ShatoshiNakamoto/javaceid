@@ -11,6 +11,10 @@ public class Admin extends User {
     public String getPhone(){
         return this.phone;
     }
+    
+    public String getName(){
+        return this.name;
+    }
 
     /* private Material mat=new Material();
     private Service ser=new Service();

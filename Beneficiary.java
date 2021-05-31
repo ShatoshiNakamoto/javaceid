@@ -62,4 +62,3 @@ public class Beneficiary extends User {
         rq.commit(RequestDonation(rd));
         
     }*/
-
