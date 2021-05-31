@@ -158,7 +158,7 @@ public class App {
         choice = scan.nextInt();
         switch(choice){
             case 1:
-                addoffer(/*user*/);
+                addoffer(don);
                 donatorMenu(don);
                 break;
             case 2:
@@ -166,7 +166,7 @@ public class App {
                 donatorMenu(don);
                 break;
             case 3: 
-                //commit(user);//donator commit
+                //don.commit(rd);
                 donatorMenu(don);
                 break;
             case 4:
@@ -185,15 +185,16 @@ public class App {
         }
     }
 
-    public void addoffer(/*user*/){
+    public void addoffer(Donator don){
         Scanner scan = new Scanner(System.in);
         int choice;
         System.out.println("1. Material\n" + "2. Services\n");//theloume ektypwsh kai plhthous antikeimenwn
         choice = scan.nextInt();
-        //donator.getorg().listEntities(choice);//ektypwnei
+        don.getOrg().listEntities(choice);//ektypwnei
+        System.out.println("Εισάγετε ποσότητα/ώρες:\n");
         choice = scan.nextInt();
         //entity.getorg.getEntityInfo(choice);//ektypwnei? oxi, tha eprepe
-        System.out.println("Θέλετε να προφέρετε;\n1. Ναι\n2. Όχι\n");
+        System.out.println("Θέλετε να προφέρετε "+choice+ ";\n1. Ναι\n2. Όχι\n");
         choice = scan.nextInt();
         if (choice==1) {
             //eisodos posothtas/wrwn apo xrhsth 

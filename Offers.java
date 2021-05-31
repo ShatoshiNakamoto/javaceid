@@ -5,7 +5,7 @@ public class Offers extends RequestDonationList {
     
     public void commit(RequestDonation rd) {
         if(getRdEntities().contains(rd)) {
-            //org.getCurrentDonations().add(rd);
+            org.addToCurrentDonations(rd);
             getRdEntities().remove(rd);
         }
     }

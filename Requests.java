@@ -36,12 +36,12 @@ public class Requests extends RequestDonationList{
     }
     
     public void commit(RequestDonation rd) {
-        if(org.getCurrentDonations().contains(rd)) {
-            super.remove(rd);
-            getRdEntities().remove(rd);
-            ben.getReceivedList().add(rd);
-        }
-        else System.out.println("This quantity is not available!");
+        // if(org.getCurrentDonations().contains(rd)) {
+        //     super.remove(rd);
+        //     getRdEntities().remove(rd);
+        //     ben.getReceivedList().add(rd);
+        // }
+        // else System.out.println("This quantity is not available!");
         
         /* if(validRequestDonation(rd)==a) System.out.println("This person is allowed to have the requested ammount."); {
             super.remove(rd);

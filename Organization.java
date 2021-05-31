@@ -6,12 +6,12 @@ public class Organization {
     private List<Entity> entityList;
     private ArrayList<Donator> donatorList;
     private List<Beneficiary> beneficiaryList;
-    private List<RequestDonationList> currentDonations;
+    private List<RequestDonation> currentDonations;
     
     public Organization(String name) {
         this.name=name;
-        entityList=new ArrayList<>();
-        currentDonations=new ArrayList<>();
+        this.entityList=new ArrayList<>();
+        this.currentDonations=new ArrayList<>();
         this.donatorList= new ArrayList<>();
         this.beneficiaryList= new ArrayList<>();
     }
@@ -213,9 +213,15 @@ public class Organization {
 
     }
 
-    public List<RequestDonationList> getCurrentDonations(){
-        return this.currentDonations;
+    public void addToCurrentDonations(RequestDonation rd){
+        this.currentDonations.add(rd);
     }
 
+    public List<RequestDonation> getCurretnDonations(){
+    return this.currentDonations;
+    }
 
+    public void printRequestDonationsList(){
+        System.out.println(this.currentDonations);
+    }
 }
