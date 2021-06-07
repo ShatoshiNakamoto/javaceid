@@ -1,10 +1,13 @@
-import java.util.List;
+import java.util.*;
 
 public class RequestDonationList {
-    private List<RequestDonation> rdEntities;
+    //metavlhtes
+    private ArrayList<RequestDonation> rdEntities;
     
+    //constructor xwris orismata
     public RequestDonationList() {}
     
+    //methodos gia na epistrefei thn ArrayList rdEntities
     public List<RequestDonation> getRdEntities(){
         return this.rdEntities;
     }
@@ -33,21 +36,22 @@ public class RequestDonationList {
         {
             rdEntities.add(requestDonation); 
         }
-        //EDW PREPEI NA 3ANAER8W GIA TO ORGANIZATION
-    
     }
     
+    //an uparxei to id pou dinw san orisma diagrafetai to entity apo thn lista
     public void remove(RequestDonation a) {
         if(this.get(a.getEntity().getId())!=null) rdEntities.remove(a);
         else System.out.println("This request does not exist!");
     }
     
+    //methodos gia na allazeis thn posothta tou entity an uparxei sthn lista
     public void modify(RequestDonation a, double b) {
         RequestDonation rd=this.get(a.getEntity().getId());
         if(rd!=null) rd.setQuantity(b);
         else System.out.println("This request does not exist!");
     }
     
+    //methodos gia na epistrefei tis prosfores twn entties apo tous donators mazi me tis posothtes
     public void monitor(){ 
         System.out.println("Request Donation List: ");
         for(RequestDonation r: this.rdEntities)
@@ -56,6 +60,7 @@ public class RequestDonationList {
         }
     }
     
+    //methodos pou ka8arizei thn lista rdEntities
     public void reset(){
         this.rdEntities.clear();
     }
